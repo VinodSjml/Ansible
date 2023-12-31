@@ -1,5 +1,5 @@
 -name: play1
- host: all
+ hosts: all
  tasks:
   -name: playbook1 to print
     ansible.builtin.debug
