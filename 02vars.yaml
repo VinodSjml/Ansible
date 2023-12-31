@@ -19,7 +19,7 @@
      vars:
       URL: notes.google.com
 
-    - name: get instance type 
+   - name: get instance type 
       ansible.builtin.debug:
        msg: "instance type is {{ins_type}}"
 
