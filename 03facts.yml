@@ -1,0 +1,6 @@
+- name: facts
+  hosts: dev
+  tasks: 
+   - name: print boot image of dev
+     ansible.builtin.debug:
+      msg: "kernle/boot of dev server is {{BOOT_IMAGE}}" 
