@@ -1,6 +1,13 @@
 - name: facts
-  hosts: dev
+  hosts: "{{env}}"
+  vars_prompt: 
+   - name: env
+     prompt: enter environment
+     private: false
+  vars_files:
+   - "{{env}}.yml"
   tasks: 
    - name: print kernel of dev server
      ansible.builtin.debug:
       msg: "kernle/boot of dev server is {{ansible_kernel}}" 
+      msg: "type of instance is {{ins_type}}"
