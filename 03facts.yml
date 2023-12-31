@@ -4,13 +4,13 @@
    - name: env
      prompt: enter environment
      private: false
-  # vars_files:
-  #  - "{{env}}.yml"
+  vars_files:
+   - "{{env}}.yml"
   tasks: 
    - name: print kernel of {{env}} server
      ansible.builtin.debug:
       msg: "kernle/boot of {{env}} server is {{ansible_kernel}}" 
 
-  #  - name: print instance
-  #    ansible.builtin.debug:   
-  #     msg: "type of instance is {{ins_type}}"
+   - name: print instance
+     ansible.builtin.debug:   
+      msg: "type of instance is {{ins_type}}"
