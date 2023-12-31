@@ -3,7 +3,7 @@
   vars:
    URL: book.google.com
   vars_prompt:
-   - env_name: 
+   - env: environment
      prompt: enter environment
      private: false
   vars_files:
