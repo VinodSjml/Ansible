@@ -10,4 +10,5 @@
    - name: this is to print local varibale
      ansible.builtin.debug:
       msg: "local url is {{URL}}"
-     URL: notes.google.com
+     vars:
+      URL: notes.google.com
