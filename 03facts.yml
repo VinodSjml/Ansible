@@ -10,4 +10,7 @@
    - name: print kernel of dev server
      ansible.builtin.debug:
       msg: "kernle/boot of dev server is {{ansible_kernel}}" 
+
+   - name: print instance
+     ansible.builtin.debug:   
       msg: "type of instance is {{ins_type}}"
