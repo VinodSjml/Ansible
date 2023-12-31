@@ -5,7 +5,7 @@
      ansible.builtin.debug:
       msg: "hi on dev"
 
-   - name: print only prod
+   - name: print only dev
      ansible.builtin.debug:
        msg: "this s dev"
 
