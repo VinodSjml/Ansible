@@ -7,7 +7,7 @@
   vars_files:
    - "{{env}}.yml"
   tasks: 
-   - name: print kernel of dev server
+   - name: print kernel of {{env}} server
      ansible.builtin.debug:
       msg: "kernle/boot of dev server is {{ansible_kernel}}" 
 
