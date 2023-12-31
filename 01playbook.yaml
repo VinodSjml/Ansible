@@ -1,6 +1,6 @@
-- name: play1
-  hosts: all
+- name: play2
+  hosts: prod
   tasks:
-   - name: playbook1 to print
+   - name: print only prod
      ansible.builtin.debug:
-      msg: "hi this is play1"
+      msg: "hi printing only prod"
