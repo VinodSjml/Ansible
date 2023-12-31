@@ -7,7 +7,7 @@
      prompt: enter environment
      private: false
   vars_files:
-   - "{{name}}.yaml" 
+   - "{{name}}".yaml 
   tasks: 
    - name: this is to print global varibale
      ansible.builtin.debug:
