@@ -3,11 +3,11 @@
   vars:
    URL: book.google.com
   vars_prompt:
-   - env: environment
+   - name: environment
      prompt: enter environment
      private: false
   vars_files:
-   - "{{env}}.yaml" 
+   - "{{name}}.yaml" 
   tasks: 
    - name: this is to print global varibale
      ansible.builtin.debug:
