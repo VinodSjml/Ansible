@@ -20,7 +20,7 @@
       URL: notes.google.com
 
    - name: get instance type 
-      ansible.builtin.debug:
+     ansible.builtin.debug:
        msg: "instance type is {{ins_type}}"
 
   #  - name: printing varibale from command line
