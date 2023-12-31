@@ -13,7 +13,7 @@
      vars:
       URL: notes.google.com
 
-   - name: printing varibale from command line
-     ansible.builtin.debug:
-      msg: "the varibale from command line is {{CLVAR}}"
+  #  - name: printing varibale from command line
+  #    ansible.builtin.debug:
+  #     msg: "the varibale from command line is {{CLVAR}}"
       
