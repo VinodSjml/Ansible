@@ -7,4 +7,4 @@
 
    - name: print only prod
      ansible.builtin.debug:
-       msg: "hi on prod"
+       msg: "this s dev"
