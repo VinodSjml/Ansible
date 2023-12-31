@@ -9,7 +9,7 @@
   tasks: 
    - name: print kernel of {{env}} server
      ansible.builtin.debug:
-      msg: "kernle/boot of dev server is {{ansible_kernel}}" 
+      msg: "kernle/boot of {{env}} server is {{ansible_kernel}}" 
 
    - name: print instance
      ansible.builtin.debug:   
