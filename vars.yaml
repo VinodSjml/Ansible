@@ -3,6 +3,11 @@
   vars:
    URL: book.google.com
   tasks: 
-   - name: this is to print url varibale
+   - name: this is to print global varibale
      ansible.builtin.debug:
       msg: "{{URL}}"
+
+   - name: this is to print local varibale
+     ansible.builtin.debug:
+      msg: "local url is {{URL}}"
+     URL: notes.google.com
