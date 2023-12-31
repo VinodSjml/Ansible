@@ -5,4 +5,4 @@
   tasks: 
    - name: this is to print url varibale
      ansible.builtin.debug:
-      msg: "the url is {{URL}}"
+      msg: "{{URL}}"
