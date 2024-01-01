@@ -1,7 +1,7 @@
 - name: conditions
   hosts: all
-  # vars:
-  #  action: false
+  vars:
+   action: false
   tasks: 
    - name: version of OS
      ansible.builtin.debug: 
@@ -11,5 +11,5 @@
    - name: printing action
      ansible.builtin.debug:
       msg: printing action means action is true
-     when: action is not defined
+     when: action is defined
      

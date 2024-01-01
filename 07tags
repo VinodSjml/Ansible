@@ -1,0 +1,11 @@
+- name: use of tags
+  hosts: all
+  tasks: 
+   - name: frontend task
+     ansible.builtin.debug:
+      msg: install frontend
+
+   - name: backend task
+     ansible.builtin.debug:
+      msg: install backend
+     
