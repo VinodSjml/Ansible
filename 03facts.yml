@@ -7,10 +7,12 @@
   vars_files:
    - "{{env}}.yml"
   tasks: 
-   - name: print kernel of {{env}} server
+   - name: print mac adress of {{env}} server
      ansible.builtin.debug:
-      msg: "kernle/boot of {{env}} server is {{ansible_kernel}}" 
+      msg: "mac address of {{env}} server is {{ansible_default_ipv4.macaddress}}" 
 
-   - name: print instance
-     ansible.builtin.debug:   
-      msg: "type of instance is {{ins_type}}"
+
+
+  #  - name: print instance
+  #    ansible.builtin.debug:   
+  #     msg: "type of instance is {{ins_type}}"
