@@ -4,8 +4,10 @@
    - name: frontend task
      ansible.builtin.debug:
       msg: install frontend
+     tags: frontend
 
    - name: backend task
      ansible.builtin.debug:
       msg: install backend
+     tags: backend
      
