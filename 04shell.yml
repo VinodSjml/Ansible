@@ -8,3 +8,11 @@
    - name: uptime of servers 
      ansible.builtin.debug:
       msg: "{{OUTPUT.stdout}}"
+
+   - name: set variable
+     set_fact:
+      exitcode: "{{OUTPUT.rc}}"
+
+   - name: exit code of uptime command
+     ansible.builtin.debug:
+      msg: exit code of uptime is {{exitcode}}
