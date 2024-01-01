@@ -1,8 +1,15 @@
 - name: conditions
   hosts: all
+  vars:
+   action: true
   tasks: 
    - name: version of OS
      ansible.builtin.debug: 
       msg: version of OS is {{ansible_distribution}}
      when: ansible_distribution == "CentOS"
+
+   - name: printing action
+     ansible.builtin.debug:
+      msg: printing action means action is true
+     when: action
      
