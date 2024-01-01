@@ -11,7 +11,6 @@
      ansible.builtin.debug:
       msg: "mac address of {{env}} server is {{ansible_default_ipv4.macaddress}}" 
 
-  tasks:
    - name: print kernel of ansible
      ansible.builtin.debug:
       msg: "kernel of ansible of {{env}} server is {{ansible_kernel}}"
