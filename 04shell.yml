@@ -7,8 +7,4 @@
 
    - name: uptime of servers 
      ansible.builtin.debug:
-      msg: "{{OUTPUT}}"
-      
-   - name: print only stdout
-     ansible.builtin.debug:
-      msg: "{{msg.stdout}}"
+      msg: "{{OUTPUT.stdout}}"
