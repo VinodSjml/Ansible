@@ -1,0 +1,10 @@
+- name: errors and handling
+  hosts: all
+  tasks: 
+   - name: find java
+     ansible.builtin.shell: ps -ef | grep java | grep -v grep
+     register: OUT
+
+   - name: starting java
+     ansible.builtin.debug:
+      msg: java is being started
