@@ -1,7 +1,7 @@
 - name: conditions
   hosts: all
-  vars:
-   action: false
+  # vars:
+  #  action: false
   tasks: 
    - name: version of OS
      ansible.builtin.debug: 
