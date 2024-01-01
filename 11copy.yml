@@ -1,0 +1,7 @@
+- name: copy
+  hosts: all
+  tasks: 
+   - name: to copy to all nodes
+     ansible.builtin.copy:
+      src: filetocopy
+      dest: /home/centos
