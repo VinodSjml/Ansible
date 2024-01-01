@@ -4,5 +4,5 @@
    - name: version of OS
      ansible.builtin.debug: 
       msg: version of OS is {{ansible_distribution}}
-     when: ansible.distribution == "CentOS"
+    #  when: ansible.distribution == "CentOS"
      
