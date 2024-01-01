@@ -1,0 +1,11 @@
+- name: privilage access
+  hosts: all
+  tasks: 
+   - name: get the user id
+     ansible.builtin.shell: id
+     register: OUT
+
+   - name: print user id
+     ansible.builtin.debug:
+      msg: {{OUT}}
+    
