@@ -11,5 +11,5 @@
    - name: printing action
      ansible.builtin.debug:
       msg: printing action means action is true
-     when: action
+     when: action is defined
      
