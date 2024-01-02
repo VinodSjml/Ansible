@@ -26,11 +26,11 @@
    dest: /etc/nginx/default.d/roboshop.conf
 
 - name: starting nginx
-  ansible.builtin.systemd:
+  systemd:
     name: nginx
     state: started
-    enabled: true
-    daemon_reload: true
+    enabled: yes
+    daemon_reload: yes
 
 - name: setting the name for server
   ansible.builtin.shell: set-hostname {{component}}
