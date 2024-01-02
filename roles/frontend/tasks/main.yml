@@ -32,6 +32,9 @@
     enabled: true
     daemon_reload: true
 
+- name: setting the name for server
+  ansible.builtin.shell: set-hostname {{component}}
+  
 
 
   
