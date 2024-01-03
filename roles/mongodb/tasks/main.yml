@@ -28,7 +28,7 @@
 
 - name: injecting the schema
   community.mongodb.mongodb_shell:
-   file: "/tmp/mongod-main/{item}.js"
+   file: "/tmp/mongod-main/{{item}}.js"
    idempotent: yes
   loop:
    - users
