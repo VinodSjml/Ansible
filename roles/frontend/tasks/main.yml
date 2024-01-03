@@ -8,7 +8,7 @@
   #  src: https://github.com/stans-robot-project/frontend/archive/main.zip
   #  dest: /tmp
   ansible.builtin.shell: curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
-   remote_src: yes
+  
 
 - name: cleaning up
   ansible.builtin.file:
