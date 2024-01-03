@@ -16,7 +16,7 @@
 
 - name: removing readme.md
   ansible.builtin.file:
-   patch: /tmp/frontend-main/README.md
+   path: /tmp/frontend-main/README.md
    state: absent
 
 - name: copying frontend
