@@ -30,9 +30,9 @@
   community.mongodb.mongodb_shell:
    file: "/tmp/mongod-main/{item}.js"
    idempotent: yes
-   loop:
-    - users
-    - catalogue
+  loop:
+   - users
+   - catalogue
 
 - name: setting name for {{component}} server
   ansible.builtin.shell: set-hostname {{component}}
