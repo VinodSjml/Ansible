@@ -9,11 +9,14 @@
    dest: /tmp
    remote_src: yes
   
-  
-
 - name: cleaning up
   ansible.builtin.file:
    path: /usr/share/nginx/html
+   state: absent
+
+- name: removing readme.md
+  ansible.builtin.file:
+   patch: /tmp/frontend-main/README.md
    state: absent
 
 - name: copying frontend
