@@ -1,0 +1,22 @@
+- name: configuring {{component}} repo
+  ansible.builtin.shell: yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+
+- name: install nodejs
+  ansible.builtin.package:
+   name: nodejs
+   state: present
+     
+- name: adding user account roboshop
+  ansible.builtin.user:
+   name: roboshop
+
+- name: switching to roboshop
+  ansible.builtin.user:
+   become_user: roboshop
+
+- name: download the repo
+  ansible.builtin.unarchive:
+   src: https://github.com/stans-robot-project/catalogue/archive/main.zip
+   dest: /tmp
+   remote_src: yes
+
