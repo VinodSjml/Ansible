@@ -11,8 +11,8 @@
    name: roboshop
 
 - name: switching to roboshop
-  ansible.builtin.user:
-   become_user: roboshop
+  ansible.builtin.shell: sudo su - roboshop
+   
 
 - name: download the repo
   ansible.builtin.unarchive:
