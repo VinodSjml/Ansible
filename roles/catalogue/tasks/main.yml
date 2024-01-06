@@ -1,5 +1,5 @@
-- name: configuring {{component}} repo
-  ansible.builtin.shell: yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
+# - name: configuring {{component}} repo
+#   ansible.builtin.shell: yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y
 
 - name: install nodejs
   ansible.builtin.package:
