@@ -45,7 +45,7 @@
    name: "{{component}}"
    state: restarted
    enabled: yes
-   daemon_relaod: yes
+   daemon_reload: yes
 
 - name: set server name
   ansible.builtin.shell: set-hostname {{component}}-{{env}}
