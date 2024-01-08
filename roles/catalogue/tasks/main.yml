@@ -42,13 +42,13 @@
   
 - name: starting {{component}} service
   systemd:
-   name: {{component}}
+   name: "{{component}}"
    state: restarted
    enabled: yes
    daemon-relaod: yes
 
 - name: set server name
-  ansible.builtin.shell: set-hostname {{catalogue}}-{{env}}
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
 
 
  
