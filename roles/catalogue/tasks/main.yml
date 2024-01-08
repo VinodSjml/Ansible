@@ -35,6 +35,21 @@
   npm:
    path: /home/{{appuser}}/{{component}}
 
+- name: copying systemd file
+  ansible.builtin.template:
+   src: systemd.service
+   dest: /etc/systemd/system/{{component}}.service
+  
+- name: starting {{component}} service
+  systemd:
+   name: {{component}}
+   state: restarted
+   enabled: yes
+   daemon-relaod: yes
+
+- name: set server name
+  ansible.builtin.shell: set-hostname {{catalogue}}-{{env}}
+
 
  
 
