@@ -8,7 +8,7 @@
      
 - name: adding user account {{appuser}}
   ansible.builtin.user:
-   name: {{appuser}}
+   name: "{{appuser}}"
    comment: adding {{appuser}} service user
  
 - name: download the repo
