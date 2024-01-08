@@ -6,18 +6,16 @@
    name: nodejs
    state: present
      
-- name: adding user account roboshop
+- name: adding user account {{appuser}}
   ansible.builtin.user:
-   name: roboshop
-
-- name: switching to roboshop
-  ansible.builtin.shell: sudo su - roboshop
-   
-
+   name: {{appuser}}
+   comment: adding {{appuser}} service user
+ 
 - name: download the repo
   ansible.builtin.unarchive:
    src: https://github.com/stans-robot-project/catalogue/archive/main.zip
    dest: /tmp
    remote_src: yes
+  
 
 
