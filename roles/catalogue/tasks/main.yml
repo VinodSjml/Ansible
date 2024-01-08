@@ -31,9 +31,9 @@
    group: "{{appuser}}"
    remote_src: yes
   
-# - name: performing npm install
-#   npm:
-#    path: /home/{{appuser}}/{{component}}
+- name: performing npm install
+  npm:
+   path: /home/{{appuser}}/{{component}}
 
 
  
