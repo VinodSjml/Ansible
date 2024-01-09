@@ -16,7 +16,7 @@
 
 - name: update the listening state
   ansible.builtin.replace:
-   patch: /etc/redis/redis.conf
+   path: /etc/redis/redis.conf
    regexp: '127.0.0.1'
    replace: '0.0.0.0'
 
@@ -29,7 +29,7 @@
 
 - name: setting the hostname
   ansible.builtin.shell: set-hostname {{component}}-{{env}}
-  
+
    
 
 
