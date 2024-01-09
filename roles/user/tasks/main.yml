@@ -36,7 +36,7 @@
    path: /home/{{appuser}}/{{component}}
 
 - name: copying the systemd file to {{appuser}}
-  ansible.builtin.copy:
+  ansible.builtin.template:
    src: systemd.service
    dest: /etc/systemd/system/{{component}}.service
 
