@@ -1,0 +1,12 @@
+- name: copy the {{component}} repo
+  ansible.builtin.copy:
+   src: redis.repo
+   dest: /etc/yum.repos.d/redis.repo
+
+- name: install redis
+  ansible.builtin.package:
+   name: redis
+   state: present
+
+
+   
