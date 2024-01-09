@@ -5,7 +5,8 @@
 
 - name: install redis
   ansible.builtin.package:
-   name: redis-6.2.12
+   name: redis
+   version: 6.2.12
    state: present
 
 - name: update the listening state in {{component}}.conf
