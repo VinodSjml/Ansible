@@ -34,5 +34,20 @@
 - name: installing npm
   npm:
    path: /home/{{appuser}}/{{component}}
-   
+
+- name: copying the systemd file to {{appuser}}
+  ansible.builtin.copy:
+   src: systemd.service
+   dest: /etc/systemd/system/{{component}}.service
+
+- name: starting {{component}} service
+  systemd:
+   name: "{{component}}"
+   state: restarted
+   enabled: yes
+
+- name: set hostname
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
+
+
   
