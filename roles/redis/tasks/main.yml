@@ -8,5 +8,29 @@
    name: redis
    state: present
 
+- name: update the listening state in {{component}}.conf
+  ansible.builtin.replace:
+   path: /etc/redis.conf
+   regexp: '127.0.0.1'
+   replace: '0.0.0.0'
+
+- name: update the listening state
+  ansible.builtin.replace:
+   patch: /etc/redis/redis.conf
+   regexp: '127.0.0.1'
+   replace: '0.0.0.0'
+
+- name: starting {{component}} service
+  systemd:
+   name: "{{component}}"
+   state: restarted
+   enabled: yes
+   daemon_reload: yes
+
+- name: setting the hostname
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
+  
+   
+
 
    
