@@ -11,3 +11,16 @@
    name: mysqld
    state: restarted
    enabled: yes
+
+- name: getting the log from {{component}} server
+  ansible.builtin.slurp:
+   src: /var/log/mysqld.log
+  register: pwd_log
+
+- name: extracting the default password of {{component}}
+  ansible.builtin.set_fact:
+   default_passowrd: "{{pwd_log['content'] | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
+
+- name : printing the default password
+  ansible.builtin.debug:
+   msg: default password is {{default_passowrd}}
