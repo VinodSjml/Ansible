@@ -1,0 +1,13 @@
+- name: configuring {{component}} repo
+  ansible.builtin.shell: curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
+
+- name: installing {{component}}
+  ansible.builtin.package:
+   name: mysql-community-server
+   state: present
+
+- name: starting {{component}} service
+  systemd:
+   name: mysqld
+   state: restarted
+   enabled: yes
