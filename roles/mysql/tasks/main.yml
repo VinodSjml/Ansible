@@ -15,10 +15,8 @@
 - name: validating the login using root password
   block:
    - name: trying to fecth {{component}} version 
-     community.mysql.mysql_info:
-      login_user: root
-      login_password: "{{root_password}}"
-      filter: version
+     ansible.builtin.shell: echo "show databases;" | mysql -uroot -p"{{root_password}}"
+        
   rescue:
    - name: getting the log from {{component}} server
      ansible.builtin.slurp:
@@ -47,5 +45,4 @@
 
 - name: set hostname for {{component}} server
   ansible.builtin.shell: set-hostname {{component}} {{env}}
-
 
