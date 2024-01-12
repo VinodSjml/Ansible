@@ -26,10 +26,10 @@
    msg: value is {{default_password}}
 
 - name : changing the default password
-  ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p{{default_password}}  
+  ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY {{root_password}};" | mysql --connect-expired-password -uroot -p{{default_password}}  
 
 - name: uninstalling the {{component}} validate password plugin
-  ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1
+  ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -p{{root_password}}
   
 
 
