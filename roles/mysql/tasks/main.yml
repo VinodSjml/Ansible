@@ -16,22 +16,22 @@
   block:
    - name: trying to fecth {{component}} version 
      community.mysql.mysql_info:
-     login_user: root
-     login_password: RoboShop@1
-     filter: version
+      login_user: root
+      login_password: RoboShop@1
+      filter: version
   rescue:
    - name: getting the log from {{component}} server
      ansible.builtin.slurp:
-     src: /var/log/mysqld.log
-     register: pwd_log
+      src: /var/log/mysqld.log
+      register: pwd_log
 
    - name: extracting the default password of {{component}}
      ansible.builtin.set_fact:
-     default_password: "{{pwd_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
+      default_password: "{{pwd_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
    
    - name: print default password
      ansible.builtin.debug: 
-     msg: value is {{default_password}}
+      msg: value is {{default_password}}
 
    - name : changing the default password
      ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{root_password}}';" | mysql --connect-expired-password -uroot -p"{{default_password}}"  
