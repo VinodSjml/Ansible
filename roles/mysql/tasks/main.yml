@@ -17,7 +17,7 @@
    - name: trying to fecth {{component}} version 
      community.mysql.mysql_info:
       login_user: root
-      login_password: RoboShop@1
+      login_password: "{{root_password}}"
       filter: version
   rescue:
    - name: getting the log from {{component}} server
