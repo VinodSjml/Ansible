@@ -23,7 +23,7 @@
    - name: getting the log from {{component}} server
      ansible.builtin.slurp:
       src: /var/log/mysqld.log
-      register: pwd_log
+     register: pwd_log
 
    - name: extracting the default password of {{component}}
      ansible.builtin.set_fact:
