@@ -12,24 +12,40 @@
    state: restarted
    enabled: yes
 
-- name: getting the log from {{component}} server
-  ansible.builtin.slurp:
-   src: /var/log/mysqld.log
-  register: pwd_log
+- name: validating the login using root password
+  block:
+   - name: trying to fecth {{component}} version 
+     community.mysql.mysql_info:
+     login_user: root
+     login_password: RoboShop@1
+     filter: version
+  rescue:
+   - name: getting the log from {{component}} server
+     ansible.builtin.slurp:
+     src: /var/log/mysqld.log
+     register: pwd_log
 
-- name: extracting the default password of {{component}}
-  ansible.builtin.set_fact:
-   default_password: "{{pwd_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
+   - name: extracting the default password of {{component}}
+     ansible.builtin.set_fact:
+     default_password: "{{pwd_log['content'] | b64decode | regex_findall('.*temporary password.*') | join(' ') | split(' ') | last }}"
    
-- name: print default password
-  ansible.builtin.debug: 
-   msg: value is {{default_password}}
+   - name: print default password
+     ansible.builtin.debug: 
+     msg: value is {{default_password}}
 
-- name : changing the default password
-  ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{root_password}}';" | mysql --connect-expired-password -uroot -p"{{default_password}}"  
+   - name : changing the default password
+     ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{root_password}}';" | mysql --connect-expired-password -uroot -p"{{default_password}}"  
 
-- name: uninstalling the {{component}} validate password plugin
-  ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -p{{root_password}}
-  
+   - name: uninstalling the {{component}} validate password plugin
+     ansible.builtin.shell: echo "uninstall plugin validate_password;" | mysql -uroot -p{{root_password}}
+
+- name: donwloading {{component}} schema
+  ansible.builtin.unarchive:
+   src: https://github.com/stans-robot-project/{{component}}/archive/main.zip
+   dest: /tmp
+   remote_src: yes
+
+- name: set hostname for {{component}} server
+  ansible.builtin.shell: set-hostname {{component}} {{env}}
 
 
