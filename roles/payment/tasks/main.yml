@@ -16,10 +16,6 @@
   ansible.builtin.debug:
    msg: output of adding a user is {{out}}
 
-- name: print user and group id
-  ansible.builtin.debug:
-   msg: value of userid is {{user_id}} and group id is {{group_id}}
-
 - name: download {{component}} repo
   ansible.builtin.unarchive:
    src: https://github.com/stans-robot-project/payment/archive/main.zip
