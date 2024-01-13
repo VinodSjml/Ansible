@@ -54,5 +54,5 @@
     target: /tmp/mysql-main/shipping.sql
 
 - name: set hostname for {{component}} server
-  ansible.builtin.shell: set-hostname {{component}} {{env}}
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
 
