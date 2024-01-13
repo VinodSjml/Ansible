@@ -1,0 +1,34 @@
+- name: install python
+  ansible.builtin.package:
+   name: python36 gcc python3-devel
+   state: present
+
+- name: add {{appuser}} account 
+  ansible.builtin.user: 
+   user: "{{appuser}}"
+   comment: adding service account 
+
+- name: download {{component}} repo
+  ansible.builtin.unarchive:
+   src: https://github.com/stans-robot-project/payment/archive/main.zip
+   dest: /tmp
+   remote_src: yes
+
+- name: perform cleanup 
+  ansible.builtin.file:
+   path: /home/{{appuser}}/{{component}}
+   state: absent
+
+- name: copying to {{appuser}} account
+  ansible.builtin.copy: 
+   src: /tmp/{{component}}-main/
+   dest: /home/{{appuser}}/{{component}}
+   owner: "{{appuser}}"
+   group: "{{appuser}}"
+   remote_src: yes
+
+- name: install dependencies
+  ansible.builtin.shell: pip3 install -r requirements.txt
+  args:
+   chdir: /home/{{appuser}}/{{component}}
+
