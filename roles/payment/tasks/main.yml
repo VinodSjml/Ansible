@@ -53,8 +53,8 @@
 
 - name: replace user id 
   ansible.builtin.replace:
-   src: /home/{{appuser}}/{{component}}/{{component}}.ini
-   regex: "user = 1"
+   path: /home/{{appuser}}/{{component}}/{{component}}.ini
+   regexp: "user = 1"
    replace: "user = {{user_id}}"
-   
+
 
