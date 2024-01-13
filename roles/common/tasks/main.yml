@@ -1,0 +1,3 @@
+- name: set hostname for {{component}} server
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
+  

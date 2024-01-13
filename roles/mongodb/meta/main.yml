@@ -1,0 +1,6 @@
+dependencies:
+  - role: common
+# this role called common will be executed first whenever mongodb is called, as it is listed as the dependecy for mongodb
+# inside common as we didnot mention any task name here main.yml will be excuted
+
+    

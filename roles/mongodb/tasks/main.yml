@@ -34,5 +34,3 @@
    - users
    - catalogue
 
-- name: setting name for {{component}} server
-  ansible.builtin.shell: set-hostname {{component}}

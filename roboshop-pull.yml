@@ -1,0 +1,6 @@
+- name: ansible pull play
+  hosts: localhost
+  become: yes
+  roles:
+   - "{{component}}"
+
