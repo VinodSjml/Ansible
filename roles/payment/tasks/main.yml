@@ -35,3 +35,26 @@
   args:
    chdir: /home/{{appuser}}/{{component}}
 
+- name: get userid of {{appuser}}
+  ansible.builtin.shell: id -u {{appuser}}
+  register: out
+
+- name: assign user id 
+  ansible.builtin.set_fact:
+   user_id: "{{out}}"
+
+- name: get groupid of {{appuser}}
+  ansible.builtin.shell: id -g {{appuser}}
+  register: out
+
+- name: assign user id 
+  ansible.builtin.set_fact:
+   group_id: "{{out}}"
+
+- name: replace user id 
+  ansible.builtin.replace:
+   src: /home/{{appuser}}/{{component}}/{{component}}.ini
+   regex: "user = 1"
+   replace: "user = {{user_id}}"
+   
+
