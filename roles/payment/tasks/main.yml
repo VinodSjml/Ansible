@@ -11,6 +11,7 @@
    user: "{{appuser}}"
    comment: adding service account 
 
+
 - name: download {{component}} repo
   ansible.builtin.unarchive:
    src: https://github.com/stans-robot-project/payment/archive/main.zip
@@ -60,4 +61,21 @@
     path: /home/{{appuser}}/{{component}}/{{component}}.ini
     regexp: 'uid'
     line: uid = {{user_id}}
+
+- name: update groupid
+  ansible.builtin.lineinfile:
+    path: /home/{{appuser}}/{{component}}/{{component}}.ini
+    regexp: 'gid'
+    line: gid = {{group_id}}
+
+- name: updating systemd file
+  ansible.builtin.template:
+   src: systemd.service
+   dest: /etc/systemd/system/payment.service
+
+- name: starting {{component}} service
+  systemd:
+   name: "{{component}}"
+   state: restarted
+   enabled: yes
 
