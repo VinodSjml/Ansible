@@ -41,7 +41,7 @@
 
 - name: assign user id 
   ansible.builtin.set_fact:
-   user_id: "{{out}}"
+   user_id: "{{out.stdout}}"
 
 - name: get groupid of {{appuser}}
   ansible.builtin.shell: id -g {{appuser}}
@@ -49,7 +49,7 @@
 
 - name: assign user id 
   ansible.builtin.set_fact:
-   group_id: "{{out}}"
+   group_id: "{{out.stdout}}"
 
 - name: print user and group id
   ansible.builtin.debug:
