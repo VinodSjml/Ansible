@@ -12,7 +12,7 @@
 - name: starting {{component}} service
   systemd:
    name: rabbitmq-server
-   status: restarted
+   state: restarted
    enabled: yes
 
 - name: adding {{component}} user account
@@ -27,4 +27,3 @@
 
 - name: set hostname for {{component}} server
   ansible.builtin.shell: set-hostname {{component}}-{{env}}
-  
