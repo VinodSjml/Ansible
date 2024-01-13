@@ -9,8 +9,12 @@
 - name: add {{appuser}} account 
   ansible.builtin.user: 
    user: "{{appuser}}"
-   comment: adding service account 
+   comment: adding service account
+  register: out
 
+- name: print user out
+  ansible.builtin.debug:
+   msg: output of adding a user is {{out}}
 
 - name: download {{component}} repo
   ansible.builtin.unarchive:
