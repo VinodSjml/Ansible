@@ -8,7 +8,7 @@
    name: "{{appuser}}"
    comment: adding account - {{appuser}}
 
-- name: cleanup of {{appuser}} dir
+- name: cleanup of "{{appuser}}" dir
   ansible.builtin.files:
    path: /home/{{appuser}}/{{component}}
    state: absent
