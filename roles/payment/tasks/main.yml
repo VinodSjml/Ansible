@@ -51,10 +51,9 @@
   ansible.builtin.set_fact:
    group_id: "{{out}}"
 
-- name: replace user id 
-  ansible.builtin.replace:
-   path: /home/{{appuser}}/{{component}}/{{component}}.ini
-   regexp: "user = 1"
-   replace: "user = {{user_id}}"
-
+- name: update userid
+  ansible.builtin.lineinfile:
+    path: /home/{{appuser}}/{{component}}/{{component}}.ini
+    regexp: 'uid'
+    line: uid = {{user_id}}
 
