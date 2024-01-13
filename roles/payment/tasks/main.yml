@@ -16,14 +16,6 @@
   ansible.builtin.debug:
    msg: output of adding a user is {{out}}
 
-- name: assign user id 
-  ansible.builtin.set_fact:
-   user_id: "{{out.uid}}"
-
-- name: assign user id 
-  ansible.builtin.set_fact:
-   group_id: "{{out.group}}"
-
 - name: print user and group id
   ansible.builtin.debug:
    msg: value of userid is {{user_id}} and group id is {{group_id}}
@@ -47,22 +39,22 @@
    group: "{{appuser}}"
    remote_src: yes
 
-- name: install dependencies
-  ansible.builtin.shell: pip3 install -r requirements.txt
-  args:
-   chdir: /home/{{appuser}}/{{component}}
-
+- name: Install specified python requirements
+  ansible.builtin.pip:
+    requirements: /home/{{appuser}}/{{component}}/requirements.txt
+    executable: pip3
+   
 - name: update userid
   ansible.builtin.lineinfile:
     path: /home/{{appuser}}/{{component}}/{{component}}.ini
     regexp: 'uid'
-    line: uid = {{user_id}}
+    line: uid = {{out.uid}}
 
 - name: update groupid
   ansible.builtin.lineinfile:
     path: /home/{{appuser}}/{{component}}/{{component}}.ini
     regexp: 'gid'
-    line: gid = {{group_id}}
+    line: gid = {{out.group}}
 
 - name: updating systemd file
   ansible.builtin.template:
