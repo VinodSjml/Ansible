@@ -12,7 +12,7 @@
 - name: starting {{component}} service
   systemd:
    name: rabbitmq-server
-   state: restarted
+   state: started
    enabled: yes
 
 - name: adding {{component}} user account

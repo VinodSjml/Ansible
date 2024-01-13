@@ -11,7 +11,7 @@
 - name: starting {{component}} service
   systemd:
    name: mysqld
-   state: restarted
+   state: started
    enabled: yes
 
 - name: validating the login using root password

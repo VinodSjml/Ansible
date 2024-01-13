@@ -23,7 +23,7 @@
 - name: starting {{component}} service
   systemd:
    name: "{{component}}"
-   state: restarted
+   state: started
    enabled: yes
    daemon_reload: yes
 

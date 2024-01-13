@@ -17,7 +17,7 @@
 - name: starting {{component}} service
   systemd:
    name: mongod
-   state: restarted
+   state: started
    enabled: yes
 
 - name: downloading the schema
