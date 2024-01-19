@@ -9,7 +9,7 @@ pipeline{
     //}
     stages {
         stage('lint check'){
-            when { branch pattern: "feature/.", comparator: "REGEXP"}
+            when { branch pattern: "feature/", comparator: "REGEXP"}
             steps{
                 
                 sh ''' echo lint check is in progress
