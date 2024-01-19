@@ -1,5 +1,4 @@
 # This playbook creates an instance, runs the playbook and then terminates the instance 
-# Ensure you create an AMI from a server that has ANSIBLE Installed 
 - name: Creating EC2 for DryRun
   hosts: localhost
   gather_facts: False
