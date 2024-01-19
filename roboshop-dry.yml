@@ -1,4 +1,4 @@
-# This playbook creates an instance, runs the playbook and then terminates the instance 
+# This playbook creates an instance, runs the playbook to perform dry run and then terminates the instance 
 - name: Creating EC2 for DryRun
   hosts: localhost
   gather_facts: False
