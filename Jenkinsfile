@@ -3,10 +3,10 @@ pipeline{
     environment {                                  // Pipeline Variables : All the stages of the pipeline can use it.
         SSH_CRED = credentials('SSH_CRED')
     }
-    parameters {
-        string(name: 'component'; defaultValue: 'mongodb')
-        choice(name: 'env'; choices:['dev', 'prod'])
-    }
+    // parameters {
+    //     string(name: 'component'; defaultValue: 'mongodb')
+    //     choice(name: 'env'; choices:['dev', 'prod'])
+    //}
     stages {
         stage('lint check'){
             when { branch pattern: "feature/.", comparator: "REGEXP"}
