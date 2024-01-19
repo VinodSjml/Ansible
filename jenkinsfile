@@ -21,7 +21,7 @@ pipeline{
             when { branch pattern: "PR-.*", comparator: "REGEXP"}
             steps{
                 env
-                sh ''' ansible-playbook -e component=mongodb -e env=env ansible_user=${SSH_CRED_usr} ansible_password=${SSH_CRED_PSW} roboshop-dry.yml           
+                sh ''' ansible-playbook -e component=mongodb -e env=dev ansible_user=${SSH_CRED_usr} ansible_password=${SSH_CRED_PSW} roboshop-dry.yml           
                 '''
             }
         }
