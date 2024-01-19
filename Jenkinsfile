@@ -11,7 +11,7 @@ pipeline{
         stage('lint check'){
             when { branch pattern: "feature/.", comparator: "REGEXP"}
             steps{
-                env
+                
                 sh ''' echo lint check is in progress
                 echo lint check has been completed
                 '''
@@ -20,7 +20,7 @@ pipeline{
         stage('dry run'){
             when { branch pattern: "PR-.*", comparator: "REGEXP"}
             steps{
-                env
+                
                 sh ''' ansible-playbook -e component=mongodb -e env=env ansible_user=${SSH_CRED_usr} ansible_password=${SSH_CRED_PSW} roboshop-dry.yml           
                 '''
             }
@@ -28,7 +28,7 @@ pipeline{
         stage('main branch'){
             when {branch 'main'}
             steps{
-                env
+                
                 sh "echo branch is ${BRANCH_NAME}" 
             }
         }
