@@ -10,30 +10,37 @@
   ansible.builtin.user:
    name: "{{appuser}}"
    comment: adding {{appuser}} service user
- 
-- name: download the repo
-  ansible.builtin.unarchive:
-   src: https://github.com/stans-robot-project/{{component}}/archive/main.zip
-   dest: /tmp
-   remote_src: yes
 
-- name: performing cleanup 
-  ansible.builtin.file: 
+- name: cleaning up the {{appuser}}
+  ansible.builtin.file:
    path: /home/{{appuser}}/{{component}}
    state: absent
   ignore_errors: yes
 
-- name: extracting files into {{appuser}}
-  ansible.builtin.copy:
-   src: /tmp/catalogue-main/
-   dest: /home/{{appuser}}/{{component}}
-   owner: "{{appuser}}"
-   group: "{{appuser}}"
+- name: create app directory
+  ansible.builtin.file:
+   path: /home/{{appuser}}/{{component}}/
+   state: directory
+   mode: '0755'
+  become_user: {{appuser}}
+ 
+- name: download the repo
+  ansible.builtin.unarchive:
+   src: http://172.31.25.180:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
+   dest: /home/{{appuser}}/{{component}}/
    remote_src: yes
+
+# - name: extracting files into {{appuser}}
+#   ansible.builtin.copy:
+#    src: /tmp/catalogue-main/
+#    dest: /home/{{appuser}}/{{component}}
+#    owner: "{{appuser}}"
+#    group: "{{appuser}}"
+#    remote_src: yes
   
-- name: performing npm install
-  npm:
-   path: /home/{{appuser}}/{{component}}
+# - name: performing npm install
+#   npm:
+#    path: /home/{{appuser}}/{{component}}
 
 - name: copying systemd file
   ansible.builtin.template:

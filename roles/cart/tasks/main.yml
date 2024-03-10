@@ -34,7 +34,7 @@
 
 - name: downloading the schema
   ansible.builtin.unarchive:
-   src: http://54.210.179.145:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
+   src: http://172.31.25.180:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
    dest: /home/{{appuser}}/{{component}}/
    remote_src: yes
 
