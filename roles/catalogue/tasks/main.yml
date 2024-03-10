@@ -29,9 +29,9 @@
   ansible.builtin.get_url:
    url: http://172.31.25.180:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
    dest: /home/{{appuser}}/{{component}}/
-   username: admin
-   password: password
-   remote_src: yes
+   url_username: admin
+   url_password: password
+  remote_src: yes
 
 # - name: extracting files into {{appuser}}
 #   ansible.builtin.copy:
