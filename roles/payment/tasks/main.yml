@@ -16,24 +16,43 @@
   ansible.builtin.debug:
    msg: output of adding a user is {{out}}
 
-- name: download {{component}} repo
-  ansible.builtin.unarchive:
-   src: https://github.com/stans-robot-project/payment/archive/main.zip
-   dest: /tmp
-   remote_src: yes
-
-- name: perform cleanup 
+- name: cleaning up the {{appuser}}
   ansible.builtin.file:
    path: /home/{{appuser}}/{{component}}
    state: absent
+  ignore_errors: yes
 
-- name: copying to {{appuser}} account
-  ansible.builtin.copy: 
-   src: /tmp/{{component}}-main/
-   dest: /home/{{appuser}}/{{component}}
-   owner: "{{appuser}}"
-   group: "{{appuser}}"
+- name: create app directory
+  ansible.builtin.file:
+   path: /home/{{appuser}}/{{component}}/
+   state: directory
+   mode: '0755'
+  become_user: {{appuser}}
+ 
+- name: download the repo
+  ansible.builtin.unarchive:
+   src: http://172.31.25.180:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
+   dest: /home/{{appuser}}/{{component}}/
    remote_src: yes
+
+# - name: download {{component}} repo
+#   ansible.builtin.unarchive:
+#    src: https://github.com/stans-robot-project/payment/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+
+# - name: perform cleanup 
+#   ansible.builtin.file:
+#    path: /home/{{appuser}}/{{component}}
+#    state: absent
+
+# - name: copying to {{appuser}} account
+#   ansible.builtin.copy: 
+#    src: /tmp/{{component}}-main/
+#    dest: /home/{{appuser}}/{{component}}
+#    owner: "{{appuser}}"
+#    group: "{{appuser}}"
+#    remote_src: yes
 
 - name: Install specified python requirements
   ansible.builtin.pip:

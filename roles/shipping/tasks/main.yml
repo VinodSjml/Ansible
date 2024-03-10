@@ -8,29 +8,48 @@
    name: "{{appuser}}"
    comment: adding account - {{appuser}}
 
-- name: cleanup of "{{appuser}}" dir
+- name: cleaning up the {{appuser}}
   ansible.builtin.file:
    path: /home/{{appuser}}/{{component}}
    state: absent
+  ignore_errors: yes
 
-- name: downloading {{component}} repo
+- name: create app directory
+  ansible.builtin.file:
+   path: /home/{{appuser}}/{{component}}/
+   state: directory
+   mode: '0755'
+  become_user: {{appuser}}
+ 
+- name: download the repo
   ansible.builtin.unarchive:
-   src: https://github.com/stans-robot-project/{{component}}/archive/main.zip
-   dest: /tmp
-   remote_src: yes
-  
-- name: copying the files to {{appuser}}
-  ansible.builtin.copy:
-   src: /tmp/{{component}}-main/
-   dest: /home/{{appuser}}/{{component}}
-   owner: "{{appuser}}"
-   group: "{{appuser}}"
+   src: http://172.31.25.180:8081/repository/{{component}}/{{component}}-{{APP_VERSION}}.zip
+   dest: /home/{{appuser}}/{{component}}/
    remote_src: yes
 
-- name: performing maven cleanup
-  ansible.builtin.shell: mvn clean package && mv target/{{component}}-1.0.jar {{component}}.jar
-  args:
-   chdir: /home/{{appuser}}/{{component}}/
+# - name: cleanup of "{{appuser}}" dir
+#   ansible.builtin.file:
+#    path: /home/{{appuser}}/{{component}}
+#    state: absent
+
+# - name: downloading {{component}} repo
+#   ansible.builtin.unarchive:
+#    src: https://github.com/stans-robot-project/{{component}}/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+  
+# - name: copying the files to {{appuser}}
+#   ansible.builtin.copy:
+#    src: /tmp/{{component}}-main/
+#    dest: /home/{{appuser}}/{{component}}
+#    owner: "{{appuser}}"
+#    group: "{{appuser}}"
+#    remote_src: yes
+
+# - name: performing maven cleanup
+#   ansible.builtin.shell: mvn clean package && mv target/{{component}}-1.0.jar {{component}}.jar
+#   args:
+#    chdir: /home/{{appuser}}/{{component}}/
 
 - name: copying the systemd file to {{component}} server
   ansible.builtin.template:
