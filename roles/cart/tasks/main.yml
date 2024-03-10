@@ -30,7 +30,7 @@
    path: /home/{{appuser}}/{{component}}/
    state: directory
    mode: '0755'
-  become_user: {{appuser}}
+  become_user: "{{appuser}}"
 
 - name: downloading the schema
   ansible.builtin.unarchive:
