@@ -54,10 +54,10 @@
 #    group: "{{appuser}}"
 #    remote_src: yes
 
-- name: Install specified python requirements
-  ansible.builtin.pip:
-    requirements: /home/{{appuser}}/{{component}}/requirements.txt
-    executable: pip3
+# - name: Install specified python requirements
+#   ansible.builtin.pip:
+#     requirements: /home/{{appuser}}/{{component}}/requirements.txt
+#     executable: pip3
    
 - name: update userid
   ansible.builtin.lineinfile:
