@@ -1,0 +1,24 @@
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote
+  ansible.builtin.shell: sudo rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: Copying the Elastic Repo
+  ansible.builtin.template:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo 
+
+- name: Installing Filebeat
+  ansible.builtin.package:
+   name: filebeat
+   state: present
+
+- name: copying filebeat config
+  ansible.builtin.template:
+   src: filebeat.yml
+   dest: /etc/filebeat/filebeat.yml
+
+- name: starting filebeat
+  systemd:
+   name: filebeat
+   state: restarted
+   enabled: yes
+   daemon-reload: yes
