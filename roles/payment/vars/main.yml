@@ -1,1 +1,2 @@
 appuser: roboshop
+LOGFILE: /var/log/payment.log
