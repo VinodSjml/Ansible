@@ -70,6 +70,11 @@
    name: elk
    tasks_from: filebeat
 
+- name: Installing rsyslog
+  ansible.builtin.include_role:
+   name: elk
+   tasks_from: rsyslog.yml
+
 - name: set hostname
   ansible.builtin.shell: set-hostname {{component}}-{{env}}
 
