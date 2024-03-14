@@ -37,6 +37,11 @@
     enabled: yes
     daemon_reload: yes
 
+- name: Installing Filebeat 
+  ansible.builtin.include_role:
+    name: elk
+    tasks_from: filebeat
+
 - name: setting the name for server
   ansible.builtin.shell: set-hostname {{component}}
   

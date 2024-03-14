@@ -82,3 +82,11 @@
    state: restarted
    enabled: yes
 
+- name: Installing Filebeat 
+  ansible.builtin.include_role:
+   name: elk
+   tasks_from: filebeat
+
+- name: set hostname
+  ansible.builtin.shell: set-hostname {{component}}-{{env}}
+
